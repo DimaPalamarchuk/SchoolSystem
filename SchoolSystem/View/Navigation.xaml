@@ -1,0 +1,58 @@
+﻿<Window x:Class="SchoolSystem.View.Navigation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolSystem.View"
+        mc:Ignorable="d"
+        Title="Navigation" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Name="StudentDashboard">
+                <TabItem.Header>
+                    <TextBlock Text="Dashboard"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentPersonalData">
+                <TabItem.Header>
+                    <TextBlock Text="Personal Data"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentGrades">
+                <TabItem.Header>
+                    <TextBlock Text="Grades"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentSchedule">
+                <TabItem.Header>
+                    <TextBlock Text="Schedule"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentMyBooks">
+                <TabItem.Header>
+                    <TextBlock Text="My Books"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentLibraryCatalog">
+                <TabItem.Header>
+                    <TextBlock Text="Library Catalog"/>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem Name="StudentBook">
+                <TabItem.Header>
+                    <TextBlock Text="Book"/>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

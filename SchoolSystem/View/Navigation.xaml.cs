@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SchoolSystem
+namespace SchoolSystem.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Navigation.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Navigation : Window
     {
-        public MainWindow()
+        public Navigation()
         {
             InitializeComponent();
         }

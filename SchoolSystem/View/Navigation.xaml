@@ -7,52 +7,29 @@
         mc:Ignorable="d"
         Title="Navigation" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <TabControl Grid.Row="0">
-            <TabItem Name="StudentDashboard">
-                <TabItem.Header>
-                    <TextBlock Text="Dashboard"/>
-                </TabItem.Header>
+        <TabControl TabStripPlacement="Left">
+            
+            <TabItem Header="Dashboard"/>
+
+            <TabItem Header="Academic">
+
+                <TabControl TabStripPlacement="Left">
+                    <TabItem Header="Personal Data"></TabItem>
+                    <TabItem Header="Grades"></TabItem>
+                    <TabItem Header="Schedule"></TabItem>
+                </TabControl>
+
             </TabItem>
 
-            <TabItem Name="StudentPersonalData">
-                <TabItem.Header>
-                    <TextBlock Text="Personal Data"/>
-                </TabItem.Header>
+            <TabItem Header="Library">
+
+                <TabControl TabStripPlacement="Left">
+                    <TabItem Header="My Books"></TabItem>
+                    <TabItem Header="Library Catalog"></TabItem>
+                </TabControl>
+
             </TabItem>
 
-            <TabItem Name="StudentGrades">
-                <TabItem.Header>
-                    <TextBlock Text="Grades"/>
-                </TabItem.Header>
-            </TabItem>
-
-            <TabItem Name="StudentSchedule">
-                <TabItem.Header>
-                    <TextBlock Text="Schedule"/>
-                </TabItem.Header>
-            </TabItem>
-
-            <TabItem Name="StudentMyBooks">
-                <TabItem.Header>
-                    <TextBlock Text="My Books"/>
-                </TabItem.Header>
-            </TabItem>
-
-            <TabItem Name="StudentLibraryCatalog">
-                <TabItem.Header>
-                    <TextBlock Text="Library Catalog"/>
-                </TabItem.Header>
-            </TabItem>
-
-            <TabItem Name="StudentBook">
-                <TabItem.Header>
-                    <TextBlock Text="Book"/>
-                </TabItem.Header>
-            </TabItem>
         </TabControl>
     </Grid>
 </Window>

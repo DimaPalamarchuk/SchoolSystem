@@ -23,5 +23,15 @@ namespace SchoolSystem.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Auth_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

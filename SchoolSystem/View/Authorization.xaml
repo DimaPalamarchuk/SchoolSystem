@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolSystem.View"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="800">
-    <Grid>
-        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Authorization" Height="400" Width="600">
+    <Grid Background="White">
+
+        <Border MinWidth="300" Margin="15,15,15,38" Padding="30" MaxWidth="550" CornerRadius="20" MinHeight="250" MaxHeight="350" VerticalAlignment="Center">
+
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock Text="School System" FontSize="34" FontWeight="Bold" FontFamily="Century Gothic" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <StackPanel Margin="10">
+                    <Label Content="Login"/>
+                    <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Type Your UserName" MinHeight="22" MinWidth="328">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="12" Padding="2" BorderThickness="2" BorderBrush="#1D78BA">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <Label Content="Password"/>
+                    <PasswordBox x:Name="passBox" MinHeight="22" MinWidth="328">
+                        <PasswordBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="12" Padding="2" BorderThickness="2" BorderBrush="#1D78BA">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </PasswordBox.Template>
+                    </PasswordBox>
+                </StackPanel>
+
+                <Button HorizontalAlignment="Left" Content="Forgot password?" Background="#00000000" BorderBrush="#00000000" Click="Button_Click" Foreground="#1D78BA" Margin="20,0,0,0" FontSize="12" FontWeight="Bold"/>
+                <Button HorizontalAlignment="Center" Content="Sign in" Click="Button_Auth_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#1D78BA" MaxWidth="50" MaxHeight="25" FontSize="14" FontWeight="Bold"/>
+            </StackPanel>
+
+        </Border>
+
     </Grid>
 </Window>

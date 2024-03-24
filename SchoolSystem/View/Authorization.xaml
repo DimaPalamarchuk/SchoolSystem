@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SchoolSystem.View"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
         Title="Authorization" Height="400" Width="600">
     <Grid Background="White">
 

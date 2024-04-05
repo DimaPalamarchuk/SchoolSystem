@@ -1,0 +1,135 @@
+﻿<Window x:Class="SchoolSystem.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolSystem.Views"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+        xmlns:vm="clr-namespace:SchoolSystem.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        Title="School System" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:PersonalDataViewModel}">
+            <local:PersonalDataView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:GradesViewModel}">
+            <local:GradesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MyBooksViewModel}">
+            <local:MyBooksView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LibraryCatalogViewModel}">
+            <local:LibraryCatalogView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Navigation -->
+            <ColumnDefinition Width="200"/>
+            <!-- Content -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            
+        <!-- Navigation -->
+        <Border Grid.Column="0" 
+                BorderThickness="0,0,1,0" 
+                BorderBrush="{StaticResource color3}"
+                Padding="5,10">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel>
+                    <RadioButton Tag="{StaticResource color1}"
+                                 Style="{StaticResource navButton}"
+                                 Command="{Binding ShowPersonalDataViewCommand}"
+                                 GroupName="navButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserAlt"
+                                          Style="{StaticResource navButtonIcon}"/>
+                            <TextBlock Text="Personal data" 
+                                       Style="{StaticResource navButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Tag="{StaticResource color1}"
+                                 Style="{StaticResource navButton}"
+                                 Command="{Binding ShowGradesViewCommand}"
+                                 GroupName="navButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="SquarePollHorizontal"
+                                          Style="{StaticResource navButtonIcon}"/>
+                            <TextBlock Text="Grades" 
+                                       Style="{StaticResource navButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Tag="{StaticResource color1}"
+                                 Style="{StaticResource navButton}"
+                                 Command="{Binding ShowMyBooksViewCommand}"
+                                 GroupName="navButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="BookOpenReader"
+                                          Style="{StaticResource navButtonIcon}"/>
+                            <TextBlock Text="My books" 
+                                       Style="{StaticResource navButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Tag="{StaticResource color1}"
+                                 Style="{StaticResource navButton}"
+                                 Command="{Binding ShowLibraryCatalogViewCommand}"
+                                 GroupName="navButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="List"
+                                          Style="{StaticResource navButtonIcon}"/>
+                            <TextBlock Text="Library catalog" 
+                                       Style="{StaticResource navButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <Button Tag="{StaticResource color1}"
+                            Style="{StaticResource navExitButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="DoorOpen"
+                                          Style="{StaticResource navExitButtonIcon}"/>
+                            <TextBlock Text="Exit" 
+                                       Style="{StaticResource navExitButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <Grid Grid.Column="1"
+              Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Caption}"
+                       Style="{StaticResource Heading1}"/>
+
+            <ContentControl Content="{Binding CurrentChildView}" 
+                            Grid.Row="1"
+                            Margin="0,25,0,0"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -12,26 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SchoolSystem.View
+namespace SchoolSystem.Views
 {
     /// <summary>
-    /// Interaction logic for Authorization.xaml
+    /// Interaction logic for MainWindowView.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class MainWindowView : Window
     {
-        public Authorization()
+        public MainWindowView()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void Button_Auth_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolSystem.View
+namespace SchoolSystem.Views
 {
     /// <summary>
-    /// Interaction logic for Navigation.xaml
+    /// Interaction logic for LibraryCatalog.xaml
     /// </summary>
-    public partial class Navigation : Window
+    public partial class LibraryCatalogView : UserControl
     {
-        public Navigation()
+        public LibraryCatalogView()
         {
             InitializeComponent();
         }

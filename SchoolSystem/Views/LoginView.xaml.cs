@@ -29,5 +29,10 @@ namespace SchoolSystem.Views
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        private void BindablePasswordBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolSystem.Models
 {
-    internal class Employee
+    public interface IGradeRepository
     {
+        List<GradeModel> GetStudentGradesByStudentId(Guid studentId);
     }
 }

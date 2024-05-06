@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolSystem.Views
+namespace SchoolSystem.Views.Student
 {
     /// <summary>
-    /// Interaction logic for MyBooksView.xaml
+    /// Interaction logic for StudentGradesView.xaml
     /// </summary>
-    public partial class MyBooksView : UserControl
+    public partial class StudentGradesView : UserControl
     {
-        public MyBooksView()
+        public StudentGradesView()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

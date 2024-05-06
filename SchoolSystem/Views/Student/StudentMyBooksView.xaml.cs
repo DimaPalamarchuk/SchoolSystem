@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolSystem.Views
+namespace SchoolSystem.Views.Student
 {
     /// <summary>
-    /// Interaction logic for MainWindowView.xaml
+    /// Interaction logic for StudentMyBooksView.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class StudentMyBooksView : UserControl
     {
-        public MainWindowView()
+        public StudentMyBooksView()
         {
             InitializeComponent();
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
         }
     }
 }

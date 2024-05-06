@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolSystem.Views
+namespace SchoolSystem.Views.Student
 {
     /// <summary>
-    /// Interaction logic for LibraryCatalog.xaml
+    /// Interaction logic for PersonalDataView.xaml
     /// </summary>
-    public partial class LibraryCatalogView : UserControl
+    public partial class StudentPersonalDataView : UserControl
     {
-        public LibraryCatalogView()
+        public StudentPersonalDataView()
         {
             InitializeComponent();
         }

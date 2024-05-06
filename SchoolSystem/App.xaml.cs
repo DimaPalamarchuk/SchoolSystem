@@ -1,6 +1,8 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using SchoolSystem.Views;
+using SchoolSystem.Views.Student;
 
 namespace SchoolSystem
 {
@@ -9,6 +11,10 @@ namespace SchoolSystem
     /// </summary>
     public partial class App : Application
     {
+        protected void ApplicationStart(object sender, StartupEventArgs e) 
+        {
+            var loginView = new LoginView();
+            loginView.Show();
+        }
     }
-
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolSystem.Models
 {
-    internal class Role
+    public interface IStudentAccountRepository
     {
+        StudentAccountModel getByUsername(string username);
     }
 }

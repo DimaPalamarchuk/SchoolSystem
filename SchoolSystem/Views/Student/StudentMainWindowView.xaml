@@ -1,11 +1,11 @@
-﻿<Window x:Class="SchoolSystem.Views.MainWindowView"
+﻿<Window x:Class="SchoolSystem.Views.Student.StudentMainWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SchoolSystem.Views"
+        xmlns:local="clr-namespace:SchoolSystem.Views.Student"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
-        xmlns:vm="clr-namespace:SchoolSystem.ViewModels"
+        xmlns:vm="clr-namespace:SchoolSystem.ViewModels.Student"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
@@ -13,22 +13,18 @@
         MouseDown="Window_MouseDown"
         Title="School System" Height="450" Width="800">
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
-
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:PersonalDataViewModel}">
-            <local:PersonalDataView/>
+        <DataTemplate DataType="{x:Type vm:StudentPersonalDataViewModel}">
+            <local:StudentPersonalDataView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:GradesViewModel}">
-            <local:GradesView/>
+        <DataTemplate DataType="{x:Type vm:StudentGradesViewModel}">
+            <local:StudentGradesView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:MyBooksViewModel}">
-            <local:MyBooksView/>
+        <DataTemplate DataType="{x:Type vm:StudentMyBooksViewModel}">
+            <local:StudentMyBooksView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:LibraryCatalogViewModel}">
-            <local:LibraryCatalogView/>
+        <DataTemplate DataType="{x:Type vm:StudentLibraryCatalogViewModel}">
+            <local:StudentLibraryCatalogView/>
         </DataTemplate>
     </Window.Resources>
     
@@ -55,7 +51,7 @@
                 <StackPanel>
                     <RadioButton Tag="{StaticResource color1}"
                                  Style="{StaticResource navButton}"
-                                 Command="{Binding ShowPersonalDataViewCommand}"
+                                 Command="{Binding ShowStudentPersonalDataViewCommand}"
                                  GroupName="navButton">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserAlt"
@@ -67,7 +63,7 @@
 
                     <RadioButton Tag="{StaticResource color1}"
                                  Style="{StaticResource navButton}"
-                                 Command="{Binding ShowGradesViewCommand}"
+                                 Command="{Binding ShowStudentGradesViewCommand}"
                                  GroupName="navButton">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="SquarePollHorizontal"
@@ -79,7 +75,7 @@
 
                     <RadioButton Tag="{StaticResource color1}"
                                  Style="{StaticResource navButton}"
-                                 Command="{Binding ShowMyBooksViewCommand}"
+                                 Command="{Binding ShowStudentMyBooksViewCommand}"
                                  GroupName="navButton">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpenReader"
@@ -91,7 +87,7 @@
 
                     <RadioButton Tag="{StaticResource color1}"
                                  Style="{StaticResource navButton}"
-                                 Command="{Binding ShowLibraryCatalogViewCommand}"
+                                 Command="{Binding ShowStudentLibraryCatalogViewCommand}"
                                  GroupName="navButton">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="List"
@@ -104,6 +100,7 @@
 
                 <StackPanel Grid.Row="1">
                     <Button Tag="{StaticResource color1}"
+                            Command="{Binding ExitCommand}"
                             Style="{StaticResource navExitButton}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="DoorOpen"

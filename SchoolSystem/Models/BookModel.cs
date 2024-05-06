@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolSystem.ViewModels
+namespace SchoolSystem.Models
 {
-    public class GradesViewModel: ViewModelBase
+    public class BookModel
     {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

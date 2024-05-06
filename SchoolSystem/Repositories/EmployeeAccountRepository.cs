@@ -1,49 +1,47 @@
-﻿using System;
+﻿using SchoolSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SchoolSystem.Models;
 
 namespace SchoolSystem.Repositories
 {
-    public class StudentAccountRepository : RepositoryBase, IStudentAccountRepository
+    public class EmployeeAccountRepository : RepositoryBase, IEmployeeAccountRepository
     {
-        public StudentAccountModel getByUsername(string username)
+        public EmployeeAccountModel getByUsername(string username)
         {
-            StudentAccountModel studentAccount = null;
+            EmployeeAccountModel employeeAccount = null;
 
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-
                 command.CommandText =
-                    @"SELECT u.UserID, s.StudentID, u.FirstName, u.LastName, u.Username 
+                    @"SELECT u.UserID, e.EmployeeID, u.FirstName, u.LastName, u.Username 
                       FROM Users u
-                      INNER JOIN Students s ON u.UserID = s.UserID
+                      INNER JOIN Employees e ON u.UserID = e.UserID
                       WHERE u.Username = @username";
-
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        studentAccount = new StudentAccountModel()
+                        employeeAccount = new EmployeeAccountModel()
                         {
                             UserId = (Guid)reader[0],
-                            StudentId = (Guid)reader[1],
+                            EmployeeId = (Guid)reader[1],
                             FirstName = (string)reader[2],
                             LastName = (string)reader[3],
-                            IndexNo = (string)reader[4],
+                            Username = (string)reader[4],
                         };
                     }
                 }
             }
-            return studentAccount;
+            return employeeAccount;
         }
     }
 }

@@ -65,7 +65,7 @@ namespace SchoolSystem.ViewModels.Student
             }
         }
 
-        //--> Commands
+        // Commands
         public ICommand ShowStudentPersonalDataViewCommand { get; }
         public ICommand ShowStudentGradesViewCommand { get; }
         public ICommand ShowStudentMyBooksViewCommand { get; }
@@ -74,7 +74,7 @@ namespace SchoolSystem.ViewModels.Student
 
         public StudentMainWindowViewModel()
         {
-            studentAccountRepository = new StudentAccount();
+            studentAccountRepository = new StudentAccountRepository();
             LoadCurrentUserData();
 
             // Initialize commands

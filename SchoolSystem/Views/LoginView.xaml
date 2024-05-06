@@ -57,6 +57,7 @@
         <!-- Sign in button -->
         <Button x:Name="btnLogin"
                 Command="{Binding LoginCommand}"
+                IsDefault="True"
                 Content="Sign in"
                 Width="300"
                 Height="35"

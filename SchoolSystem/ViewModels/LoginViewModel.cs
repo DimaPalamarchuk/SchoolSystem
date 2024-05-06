@@ -1,6 +1,8 @@
 ﻿using SchoolSystem.Models;
 using SchoolSystem.Repositories;
+using SchoolSystem.ViewModels.Employee;
 using SchoolSystem.ViewModels.Student;
+using SchoolSystem.Views.Employee;
 using SchoolSystem.Views.Student;
 using System;
 using System.Collections.Generic;
@@ -119,6 +121,13 @@ namespace SchoolSystem.ViewModels
                     studentMainWindowView.DataContext = new StudentMainWindowViewModel();
                     Application.Current.MainWindow.Close();
                     Application.Current.MainWindow = studentMainWindowView;
+                    Application.Current.MainWindow.Show();
+                } else if (currentUser.Role == "employee")
+                {
+                    EmployeeMainWindowView employeeMainWindowView = new EmployeeMainWindowView();
+                    employeeMainWindowView.DataContext = new EmployeeMainWindowViewModel();
+                    Application.Current.MainWindow.Close();
+                    Application.Current.MainWindow = employeeMainWindowView;
                     Application.Current.MainWindow.Show();
                 }
             }

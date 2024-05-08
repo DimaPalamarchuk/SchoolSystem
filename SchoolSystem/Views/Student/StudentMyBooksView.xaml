@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:SchoolSystem.Views.Student"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:student="clr-namespace:SchoolSystem.ViewModels.Student" 
-             d:DataContext="{d:DesignInstance Type=student:StudentMyBooksViewModel}"
-             
+             d:DataContext="{d:DesignInstance Type=student:StudentMyBooksViewModel}"      
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 

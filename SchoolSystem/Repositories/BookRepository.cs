@@ -1,6 +1,7 @@
 ﻿using SchoolSystem.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SchoolSystem.Repositories
@@ -68,6 +69,62 @@ namespace SchoolSystem.Repositories
                 }
             }
             return books;
+        }
+
+        public List<BookModel> GetAllBooks()
+        {
+            List<BookModel> books = new List<BookModel>();
+
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText =
+                    @"SELECT BookID, Title
+                      FROM Books;";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        BookModel book = new BookModel()
+                        {
+                            Id = (Guid)reader[0],
+                            Name = (string)reader[1],
+                        };
+                        books.Add(book);
+                    }
+                }
+            }
+            return books;
+        }
+
+        public void DeleteBook(Guid bookId) {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText =
+                    @"DELETE FROM BorrowedBooks WHERE BookID = @bookId;
+                      DELETE FROM Books WHERE BookID = @bookId;";
+                command.Parameters.Add("@bookId", SqlDbType.UniqueIdentifier).Value = bookId;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void AddBook(string bookName)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText =
+                    @"INSERT INTO Books VALUES (NEWID(), @bookName)";
+                command.Parameters.Add("@bookName", SqlDbType.Text).Value = bookName;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void BorrowBook(Guid bookId, Guid studentId)

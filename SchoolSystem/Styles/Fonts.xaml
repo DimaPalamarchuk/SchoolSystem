@@ -7,4 +7,18 @@
         <Setter Property="FontFamily" Value="Inter"/>
         <Setter Property="Foreground" Value="{StaticResource color4}"/>
     </Style>
+
+    <Style x:Key="Heading2" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="Foreground" Value="{StaticResource color4}"/>
+    </Style>
+
+    <Style x:Key="Heading3" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="Foreground" Value="{StaticResource color4}"/>
+    </Style>
 </ResourceDictionary>

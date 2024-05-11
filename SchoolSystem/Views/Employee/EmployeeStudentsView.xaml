@@ -4,9 +4,432 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SchoolSystem.Views.Employee"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:employee="clr-namespace:SchoolSystem.ViewModels.Employee" 
+             d:DataContext="{d:DesignInstance Type=employee:EmployeeStudentsViewModel}"      
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Add new student"
+                       Style="{StaticResource Heading2}"
+                       Margin="0,0,0,15"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid HorizontalAlignment="Left"
+                      Margin="0,0,0,15">
+                    <TextBlock Text="First name"
+                           FontSize="12"
+                           FontFamily="Inter"
+                           Foreground="{StaticResource color3}"/>
+
+                    <TextBox Text="{Binding NewStudentFirstName, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="12"
+                             FontFamily="Inter"
+                             Foreground="{StaticResource color4}" 
+                             BorderThickness="0,0,0,1"
+                             BorderBrush="{StaticResource color3}"
+                             Background="Transparent" 
+                             Width="150"
+                             Padding="0,0,0,2"
+                             Margin="0,15,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      HorizontalAlignment="Left"
+                      Margin="0,0,0,15">
+                    <TextBlock Text="Last name"
+                           FontSize="12"
+                           FontFamily="Inter"
+                           Foreground="{StaticResource color3}"/>
+
+                    <TextBox Text="{Binding NewStudentLastName, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="12"
+                             FontFamily="Inter"
+                             Foreground="{StaticResource color4}" 
+                             BorderThickness="0,0,0,1"
+                             BorderBrush="{StaticResource color3}"
+                             Background="Transparent" 
+                             Width="150"
+                             Padding="0,0,0,2"
+                             Margin="0,15,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      HorizontalAlignment="Left"
+                      Margin="0,0,0,15">
+                    <TextBlock Text="Index no"
+                           FontSize="12"
+                           FontFamily="Inter"
+                           Foreground="{StaticResource color3}"/>
+
+                    <TextBox Text="{Binding NewStudentIndexNo, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="12"
+                             FontFamily="Inter"
+                             Foreground="{StaticResource color4}" 
+                             BorderThickness="0,0,0,1"
+                             BorderBrush="{StaticResource color3}"
+                             Background="Transparent" 
+                             Width="150"
+                             Padding="0,0,0,2"
+                             Margin="0,15,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      HorizontalAlignment="Left">
+                    <TextBlock Text="Password"
+                           FontSize="12"
+                           FontFamily="Inter"
+                           Foreground="{StaticResource color3}"/>
+
+                    <TextBox Text="{Binding NewStudentPassword, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="12"
+                             FontFamily="Inter"
+                             Foreground="{StaticResource color4}" 
+                             BorderThickness="0,0,0,1"
+                             BorderBrush="{StaticResource color3}"
+                             Background="Transparent" 
+                             Width="150"
+                             Padding="0,0,0,2"
+                             Margin="0,15,0,0"/>
+                </Grid>
+            </Grid>
             
+            <TextBlock Grid.Row="2"
+                       Text="{Binding ErrorMessage}"
+                       FontSize="8"
+                       Foreground="Red"
+                       Margin="0,5,0,0"/>
+
+            <Button Grid.Row="3"
+                    Command="{Binding DataContext.AddStudentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                    Content="Add"
+                    Style="{StaticResource StandardButton}"
+                    HorizontalAlignment="Left"
+                    Width="150"
+                    Height="28"
+                    Margin="0,5,0,0"/>
+        </Grid>
+
+        <ScrollViewer Grid.Column="1" 
+                      Margin="30,0,0,0"
+                      VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Margin="0,0,0,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Select a student"
+                           Style="{StaticResource Heading2}"
+                           Margin="0,0,0,15"/>
+
+                    <ComboBox x:Name="allStudentsComboBox"
+                          Grid.Row="1"
+                          ItemsSource="{Binding AllStudentAccounts}"
+                          SelectedItem="{Binding SelectedStudentAccount, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="IndexNo"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          Width="80"/>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Personal data"
+                           Style="{StaticResource Heading3}"
+                           Margin="0,0,0,10"/>
+
+                    <Grid Grid.Row="1"
+                      Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="First name"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               FontFamily="Inter"
+                               Margin="0,0,0,0"
+                               Grid.Column="0"
+                               Grid.Row="0"/>
+
+                        <TextBlock Text="{Binding SelectedStudentAccount.FirstName}"
+                           FontSize="12"
+                           FontFamily="Inter"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2"
+                      Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Last name"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               FontFamily="Inter"
+                               Margin="0,0,0,0"
+                               Grid.Column="0"
+                               Grid.Row="1"/>
+
+                        <TextBlock Text="{Binding SelectedStudentAccount.LastName}"
+                               FontSize="12"
+                               FontFamily="Inter"
+                               Grid.Column="1"
+                               Grid.Row="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3"
+                      Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Index no"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               FontFamily="Inter"
+                               Margin="0,0,0,0"
+                               Grid.Column="0"
+                               Grid.Row="2"/>
+
+                        <TextBlock Text="{Binding SelectedStudentAccount.IndexNo}"
+                               FontSize="12"
+                               FontFamily="Inter"
+                               Grid.Column="1"
+                               Grid.Row="2"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Grades"
+                           Style="{StaticResource Heading3}"
+                           Margin="0,0,0,10"/>
+
+                    <Grid Grid.Row="1"
+                          Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox ItemsSource="{Binding AllSubjects}"
+                                  SelectedItem="{Binding NewGradeSubject, UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Name"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Width="100"/>
+
+                        <ComboBox Grid.Column="1"
+                                  SelectedItem="{Binding NewGrade1, UpdateSourceTrigger=PropertyChanged}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Width="50">
+                            <ComboBoxItem Content=""/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                            <ComboBoxItem Content="4"/>
+                            <ComboBoxItem Content="5"/>
+                        </ComboBox>
+
+                        <ComboBox Grid.Column="2"
+                                  SelectedItem="{Binding NewGrade2, UpdateSourceTrigger=PropertyChanged}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Width="50">
+                            <ComboBoxItem Content=""/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                            <ComboBoxItem Content="4"/>
+                            <ComboBoxItem Content="5"/>
+                        </ComboBox>
+
+                        <Button Grid.Column="3"
+                                Command="{Binding DataContext.AddGradeCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                Style="{StaticResource borrowBook}">
+                            <fa:IconImage Icon="Plus"
+                                          Style="{StaticResource borrowBookIcon}"/>
+                        </Button>
+                    </Grid>
+
+                    <Grid Grid.Row="2"
+                          Margin="0,0,0,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Subject" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="I term" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="II term" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="3" Grid.Row="0" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Left"/>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding SelectedStudentGrades}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding SubjectName}" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SelectedStudentGrades}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Grade1}" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="2" ItemsSource="{Binding SelectedStudentGrades}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Grade2}" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="3" ItemsSource="{Binding SelectedStudentGrades}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button  Command="{Binding DataContext.DeleteGradeCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                             CommandParameter="{Binding Id}"
+                                             Style="{StaticResource borrowBook}"
+                                             Margin="0,4,0,4">
+                                        <fa:IconImage Icon="Plus"
+                                                      Style="{StaticResource borrowBookIcon}">
+                                            <fa:IconImage.RenderTransform>
+                                                <RotateTransform CenterX="5.5" CenterY="5.5" Angle="45" />
+                                            </fa:IconImage.RenderTransform>
+                                        </fa:IconImage>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Margin="0,0,0,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Books"
+                               Style="{StaticResource Heading3}"
+                               Margin="0,0,0,10"/>
+
+                    <Grid Grid.Row="1"
+                          Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox ItemsSource="{Binding SelectedStudentNotBorrowedBooks}"
+                                  SelectedItem="{Binding SelectedStudentNotBorrowedBook, UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Name"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,10,0"
+                                  Width="180"/>
+
+                        <Button  Grid.Column="1"
+                                 Command="{Binding DataContext.BorrowBookCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                 CommandParameter="{Binding SelectedStudentNotBorrowedBook.Id}"
+                                 Style="{StaticResource borrowBook}">
+                            <fa:IconImage Icon="Plus"
+                                          Style="{StaticResource borrowBookIcon}"/>
+                        </Button>
+                    </Grid>
+
+                    <ItemsControl Grid.Row="2"
+                                  ItemsSource="{Binding SelectedStudentBorrowedBooks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,5">
+                                    <TextBlock Text="{Binding Name}" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Left"/>
+
+                                    <Button  Command="{Binding DataContext.ReturnBookCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                             CommandParameter="{Binding Id}"
+                                             Style="{StaticResource borrowBook}">
+                                        <fa:IconImage Icon="Plus"
+                                                      Style="{StaticResource borrowBookIcon}">
+                                            <fa:IconImage.RenderTransform>
+                                                <RotateTransform CenterX="5.5" CenterY="5.5" Angle="45" />
+                                            </fa:IconImage.RenderTransform>
+                                        </fa:IconImage>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
+                <Button Grid.Row="4"
+                        Command="{Binding DataContext.DeleteStudentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Content="Delete"
+                        Width="150"
+                        Height="28"
+                        Style="{StaticResource StandardButton}"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

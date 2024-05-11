@@ -21,6 +21,9 @@
         <DataTemplate DataType="{x:Type vm:EmployeeStudentsViewModel}">
             <local:EmployeeStudentsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EmployeeSubjectsViewModel}">
+            <local:EmployeeSubjectsView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EmployeeLibraryViewModel}">
             <local:EmployeeLibraryView/>
         </DataTemplate>
@@ -67,6 +70,18 @@
                             <fa:IconImage Icon="GraduationCap"
                                           Style="{StaticResource navButtonIcon}"/>
                             <TextBlock Text="Students" 
+                                       Style="{StaticResource navButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Tag="{StaticResource color1}"
+                                 Style="{StaticResource navButton}"
+                                 Command="{Binding ShowEmployeeSubjectsViewCommand}"
+                                 GroupName="navButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="List"
+                                           Style="{StaticResource navButtonIcon}"/>
+                            <TextBlock Text="Subjects" 
                                        Style="{StaticResource navButtonText}"/>
                         </StackPanel>
                     </RadioButton>

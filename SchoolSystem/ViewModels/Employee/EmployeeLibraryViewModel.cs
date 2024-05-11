@@ -14,7 +14,6 @@ namespace SchoolSystem.ViewModels.Employee
     {
         // Fields
         private string _bookName;
-        private EmployeeAccountModel _currentEmployeeAccount;
         private List<BookModel> _allBooks;
 
         private BookRepository bookRepository;
@@ -33,19 +32,6 @@ namespace SchoolSystem.ViewModels.Employee
             }
         }
 
-        public EmployeeAccountModel CurrentEmployeeAccount
-        {
-            get
-            {
-                return _currentEmployeeAccount;
-            }
-            set
-            {
-                _currentEmployeeAccount = value;
-                OnPropertyChanged(nameof(CurrentEmployeeAccount));
-            }
-        }
-
         public List<BookModel> AllBooks
         {
             get
@@ -55,7 +41,7 @@ namespace SchoolSystem.ViewModels.Employee
             set
             {
                 _allBooks = value;
-                OnPropertyChanged(nameof (AllBooks));
+                OnPropertyChanged(nameof(AllBooks));
             }
         }
 
@@ -66,7 +52,7 @@ namespace SchoolSystem.ViewModels.Employee
         {
             bookRepository = new BookRepository();
 
-            AllBooks = bookRepository.GetAllBooks();
+            AllBooks = [.. bookRepository.GetAllBooks().OrderBy(book => book.Name)];
 
             DeleteBookCommand = new ViewModelCommand(ExecuteDeleteBookCommand);
             AddBookCommand = new ViewModelCommand(ExecuteAddBookCommand, CanExecuteAddBookCommand);
@@ -74,24 +60,19 @@ namespace SchoolSystem.ViewModels.Employee
 
         private bool CanExecuteAddBookCommand(object obj)
         {
-            bool validData;
-
-            if (string.IsNullOrWhiteSpace(BookName) || BookName.Length < 3)
+            if (!string.IsNullOrWhiteSpace(BookName) && BookName.Length > 3)
             {
-                validData = false;
-            } else
-            {
-                validData = true;
+                return true;
             }
 
-            return validData;
+            return false;
         }
 
         private void ExecuteAddBookCommand(object obj)
         {
             bookRepository.AddBook(BookName);
             BookName = "";
-            AllBooks = bookRepository.GetAllBooks();
+            AllBooks = [.. bookRepository.GetAllBooks().OrderBy(book => book.Name)];
         }
 
         private void ExecuteDeleteBookCommand(object obj)
@@ -100,7 +81,7 @@ namespace SchoolSystem.ViewModels.Employee
 
             bookRepository.DeleteBook(bookId);
 
-            AllBooks = bookRepository.GetAllBooks();
+            AllBooks = [.. bookRepository.GetAllBooks().OrderBy(book => book.Name)];
         }
     }
 }

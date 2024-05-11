@@ -65,6 +65,7 @@ namespace SchoolSystem.ViewModels.Employee
         public ICommand ShowEmployeePersonalDataViewCommand { get; }
         public ICommand ShowEmployeeStudentsViewCommand { get; }
         public ICommand ShowEmployeeLibraryViewCommand { get; }
+        public ICommand ShowEmployeeSubjectsViewCommand { get; }
         public ICommand ExitCommand { get; }
 
         public EmployeeMainWindowViewModel()
@@ -76,6 +77,7 @@ namespace SchoolSystem.ViewModels.Employee
             ShowEmployeePersonalDataViewCommand = new ViewModelCommand(ExecuteShowEmployeePersonalDataViewCommand);
             ShowEmployeeStudentsViewCommand = new ViewModelCommand(ExecuteShowEmployeeStudentsViewCommand);
             ShowEmployeeLibraryViewCommand = new ViewModelCommand(ExecuteShowEmployeeLibraryViewCommand);
+            ShowEmployeeSubjectsViewCommand = new ViewModelCommand(ExecuteShowEmployeeSubjectsViewCommand);
             ExitCommand = new ViewModelCommand(ExecuteExitCommand);
 
             // Default view
@@ -100,6 +102,11 @@ namespace SchoolSystem.ViewModels.Employee
         {
             CurrentChildView = new EmployeeLibraryViewModel();
             Caption = "Library";
+        }
+        private void ExecuteShowEmployeeSubjectsViewCommand(object obj)
+        {
+            CurrentChildView = new EmployeeSubjectsViewModel();
+            Caption = "Subjects";
         }
         private void ExecuteExitCommand(object obj)
         {

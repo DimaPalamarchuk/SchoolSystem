@@ -49,7 +49,7 @@ namespace SchoolSystem.ViewModels.Student
             gradeRepository = new GradeRepository();
 
             CurrentStudentAccount = currentStudentAccount;
-            StudentGrades = gradeRepository.GetStudentGradesByStudentId(CurrentStudentAccount.StudentId);
+            StudentGrades = [.. gradeRepository.GetStudentGradesByStudentId(CurrentStudentAccount.StudentId).OrderBy(grade => grade.SubjectName)];
         }
     }
 }

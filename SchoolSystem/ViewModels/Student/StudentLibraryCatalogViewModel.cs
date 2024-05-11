@@ -19,7 +19,7 @@ namespace SchoolSystem.ViewModels.Student
         private StudentAccountModel _currentStudentAccount;
         private List<BookModel> _notBorrowedBooks;
 
-        private BookRepository studentBookRepository;
+        private BookRepository bookRepository;
 
         // Properties
         public StudentAccountModel CurrentStudentAccount
@@ -52,11 +52,11 @@ namespace SchoolSystem.ViewModels.Student
 
         public StudentLibraryCatalogViewModel(StudentAccountModel currentStudentAccount)
         {
-            studentBookRepository = new BookRepository();
+            bookRepository = new BookRepository();
 
             CurrentStudentAccount = currentStudentAccount;
 
-            NotBorrowedBooks = studentBookRepository.GetNotBorrowedBooksByStudentId(CurrentStudentAccount.StudentId);
+            NotBorrowedBooks = [.. bookRepository.GetNotBorrowedBooksByStudentId(CurrentStudentAccount.StudentId).OrderBy(book => book.Name)];
 
             BorrowBookCommand = new ViewModelCommand(ExecuteBorrowBookCommand);
         }
@@ -65,8 +65,9 @@ namespace SchoolSystem.ViewModels.Student
         {
             Guid bookId = (Guid)obj;
 
-            studentBookRepository.BorrowBook(bookId, CurrentStudentAccount.StudentId);
-            NotBorrowedBooks = studentBookRepository.GetNotBorrowedBooksByStudentId(CurrentStudentAccount.StudentId);
+            bookRepository.BorrowBook(bookId, CurrentStudentAccount.StudentId);
+
+            NotBorrowedBooks = [.. bookRepository.GetNotBorrowedBooksByStudentId(CurrentStudentAccount.StudentId).OrderBy(book => book.Name)];
         }
     }
 }

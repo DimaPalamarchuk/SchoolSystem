@@ -15,7 +15,7 @@ namespace SchoolSystem.ViewModels.Student
         private StudentAccountModel _currentStudentAccount;
         private List<BookModel> _borrowedBooks;
 
-        private BookRepository studentBookRepository;
+        private BookRepository bookRepository;
 
         // Properties
         public StudentAccountModel CurrentStudentAccount
@@ -48,11 +48,11 @@ namespace SchoolSystem.ViewModels.Student
 
         public StudentMyBooksViewModel(StudentAccountModel currentStudentAccount)
         {
-            studentBookRepository = new BookRepository();
+            bookRepository = new BookRepository();
 
             CurrentStudentAccount = currentStudentAccount;
 
-            BorrowedBooks = studentBookRepository.GetBorrowedBooksByStudentId(CurrentStudentAccount.StudentId);
+            BorrowedBooks = [.. bookRepository.GetBorrowedBooksByStudentId(CurrentStudentAccount.StudentId).OrderBy(book => book.Name)];
 
             ReturnBookCommand = new ViewModelCommand(ExecuteReturnBookCommand);
         }
@@ -61,8 +61,8 @@ namespace SchoolSystem.ViewModels.Student
         {
             Guid bookId = (Guid)obj;
 
-            studentBookRepository.ReturnBook(bookId, CurrentStudentAccount.StudentId);
-            BorrowedBooks = studentBookRepository.GetBorrowedBooksByStudentId(CurrentStudentAccount.StudentId);
+            bookRepository.ReturnBook(bookId, CurrentStudentAccount.StudentId);
+            BorrowedBooks = [.. bookRepository.GetBorrowedBooksByStudentId(CurrentStudentAccount.StudentId).OrderBy(book => book.Name)];
         }
     }
 }

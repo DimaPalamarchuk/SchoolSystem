@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace SchoolSystem.Repositories
 {
@@ -44,6 +45,50 @@ namespace SchoolSystem.Repositories
                 }
             }
             return grades;
+        }
+
+        public void DeleteGrade(Guid gradeId)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText =
+                    @"DELETE FROM Grades WHERE GradeID = @gradeId;";
+                command.Parameters.Add("@gradeId", SqlDbType.UniqueIdentifier).Value = gradeId;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void AddGrade(Guid studentId, string subjectName, int grade1, int? grade2)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText =
+                    @"DELETE FROM Grades
+                      WHERE StudentID = @studentId
+                      AND SubjectID = (SELECT SubjectID FROM Subjects WHERE SubjectName = @subjectName)
+
+                      INSERT INTO Grades VALUES (NEWID(), (SELECT SubjectID FROM Subjects WHERE SubjectName = @subjectName), @studentId, @grade1, @grade2)";
+                command.Parameters.Add("@studentId", SqlDbType.UniqueIdentifier).Value = studentId;
+                command.Parameters.Add("@subjectName", SqlDbType.NVarChar).Value = subjectName;
+                command.Parameters.Add("@grade1", SqlDbType.Int).Value = grade1;
+
+                if (grade2.HasValue)
+                {
+                    command.Parameters.Add("@grade2", SqlDbType.Int).Value = grade2.Value;
+                }
+                else
+                {
+                    command.Parameters.Add("@grade2", SqlDbType.Int).Value = DBNull.Value;
+                }
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

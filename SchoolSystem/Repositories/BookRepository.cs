@@ -21,7 +21,7 @@ namespace SchoolSystem.Repositories
                     @"SELECT b.BookID, b.Title
                       FROM Books b
                       LEFT JOIN BorrowedBooks bb ON b.BookID = bb.BookID AND bb.StudentID = @studentId
-                      WHERE bb.StudentID IS NULL OR bb.StudentID != @StudentId";
+                      WHERE bb.StudentID IS NULL OR bb.StudentID != @studentId";
                 command.Parameters.Add("@studentId", SqlDbType.UniqueIdentifier).Value = studentId;
                 using (var reader = command.ExecuteReader())
                 {
@@ -53,7 +53,7 @@ namespace SchoolSystem.Repositories
                     @"SELECT b.BookID, b.Title
                       FROM Books b
                       LEFT JOIN BorrowedBooks bb ON b.BookID = bb.BookID AND bb.StudentID = @studentId
-                      WHERE bb.StudentID = @StudentId";
+                      WHERE bb.StudentID = @studentId";
                 command.Parameters.Add("@studentId", SqlDbType.UniqueIdentifier).Value = studentId;
                 using (var reader = command.ExecuteReader())
                 {
@@ -99,7 +99,8 @@ namespace SchoolSystem.Repositories
             return books;
         }
 
-        public void DeleteBook(Guid bookId) {
+        public void DeleteBook(Guid bookId) 
+        {
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {

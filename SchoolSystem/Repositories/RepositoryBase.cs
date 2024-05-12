@@ -13,7 +13,7 @@ namespace SchoolSystem.Repositories
 
         public RepositoryBase()
         {
-            _connectionString = "Data Source=(localdb)\\localdb;Initial Catalog=\"School System\";Integrated Security=True";
+            _connectionString = "Data Source=(localDB)\\localdb;Initial Catalog=\"SchoolSystem\";Integrated Security=True";
         }
 
         protected SqlConnection GetConnection()

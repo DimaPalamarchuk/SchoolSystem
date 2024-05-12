@@ -308,8 +308,14 @@ namespace SchoolSystem.ViewModels.Employee
                 studentAccountRepository.AddStudent(NewStudentFirstName, NewStudentLastName, NewStudentIndexNo, NewStudentPassword);
                 AllStudentAccounts = [.. studentAccountRepository.getAllStudentAccounts().OrderBy(student => student.IndexNo)];
                 SelectedStudentAccount = AllStudentAccounts.SingleOrDefault(studentAccount => studentAccount.IndexNo == NewStudentIndexNo);
-                ErrorMessage = "";
-            } else
+
+                ErrorMessage = null;
+                NewStudentFirstName = null;
+                NewStudentLastName = null;
+                NewStudentIndexNo = null;
+                NewStudentPassword = null;
+            }
+            else
             {
                 ErrorMessage = "A student with this Index no already exists";
             }
